@@ -1,0 +1,41 @@
+{
+    "cds": [
+        {
+            "id": 1,
+            "name": "Album 1",
+            "size": 700,
+            "encryption_speed": 52,
+            "occupied_space": 250,
+            "session_count": 1,
+            "session_type": "music"
+        },
+        {
+            "id": 2,
+            "name": "Windows XP ISO",
+            "size": 700,
+            "encryption_speed": 24,
+            "occupied_space": 680,
+            "session_count": 1,
+            "session_type": "finalized"
+        },
+        {
+            "id": 3,
+            "name": "My Backups",
+            "size": 800,
+            "encryption_speed": 52,
+            "occupied_space": 150,
+            "session_count": 3,
+            "session_type": "data"
+        },
+        {
+            "id": 4,
+            "name": "Queens of StoneAge",
+            "size": 600.0,
+            "encryption_speed": 450,
+            "occupied_space": 450.0,
+            "session_count": 1,
+            "session_type": "n"
+        }
+    ],
+    "nextId": 5
+}
