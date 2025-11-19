@@ -26,7 +26,6 @@ class ICDRepository(ABC):
 
     @abstractmethod
     def get_next_id(self) -> int:
-        """Expose ID generation through the interface to avoid direct attribute access."""
         pass
 
     @abstractmethod
