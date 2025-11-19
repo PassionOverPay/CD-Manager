@@ -1,9 +1,10 @@
-from typing import List
+from typing import List, Optional
 
 from CD import CD
 
 class CDView:
     def __init__(self):
+        """Will be implemented later with GUI components."""
         pass
 
     def showMainMenu(self) -> int:
@@ -24,9 +25,9 @@ class CDView:
             return
         print("--- Displaying CDs ---")
         for cd in cd_list:
-            print(cd) # Uses the __str__ method
+            print(cd) 
 
-    def showAdd(self) -> dict:
+    def showAdd(self) -> Optional[dict]:
         print("--- Add New CD ---")
         try:
             data = {
