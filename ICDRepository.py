@@ -57,7 +57,6 @@ class CDRepository(ICDRepository):
 
     def getOpenSessions(self) -> List[CD]:
         return [cd for cd in self._cdList if cd.getOpenSession()]
-        return [cd for cd in self._cdList if cd.getOpenSession]
 
     def loadData(self, filepath: str) -> bool:
         if not os.path.exists(filepath):
