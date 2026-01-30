@@ -14,6 +14,14 @@ class CDService:
         new_cd = CD(new_id, name, size, encryption_speed, occupied_space, session_count, session_type)
         return self._repository.add(new_cd)
 
+    def update_status(self, cd_id: int, is_finalized: bool) -> bool:
+        """Updates the finalization status of a CD."""
+        cd = self.find_by_id(cd_id)
+        if cd:
+            cd.set_finalized(is_finalized)
+            return True
+        return False
+
     def sortByName(self) -> List[CD]:
         return sorted(self._repository.getAll(), key=lambda cd: cd.name)
 

@@ -52,44 +52,37 @@ class CDRepository(ICDRepository):
 
     def getAll(self) -> List[CD]:
         return self._cdList
+
     def getFreeSpace(self, min_space: float) -> List[CD]:
-        return [cd for cd in self._cdList if cd.getFreeSpace() > min_space]
+        return [cd for cd in self._cdList if cd.getFreeSpace > min_space]
 
     def getOpenSessions(self) -> List[CD]:
-        return [cd for cd in self._cdList if cd.getOpenSession()]
+        return [cd for cd in self._cdList if cd.getOpenSession]
 
     def loadData(self, filepath: str) -> bool:
         if not os.path.exists(filepath):
-            return True # Start empty
+            return True 
         try:
             with open(filepath, 'r') as f:
                 data = json.load(f)
             self._cdList = []
             loaded_cds = data.get("cds", [])
             for cd_data in loaded_cds:
-                # Remove derived fields if they exist in JSON before init
-                clean_data = {k: v for k, v in cd_data.items() if k not in ['free_space', 'is_open']}
-                self._cdList.append(CD(**clean_data))
+                self._cdList.append(CD(**cd_data))
+            
             self._nextId = data.get("nextId", len(self._cdList) + 1)
             return True
         except Exception as e:
-            st.error(f"Failed to load: {e}")
+            print(f"Error loading data: {e}")
             return False
 
     def uploadData(self, filepath: str) -> bool:
         try:
-            # We save the clean dicts (without derived properties) to keep JSON simple
-            data_to_save = []
-            for cd in self._cdList:
-                d = cd.to_dict()
-                del d['free_space']
-                del d['is_open']
-                data_to_save.append(d)
-
+            data_to_save = [cd.to_dict() for cd in self._cdList]
             payload = {"cds": data_to_save, "nextId": self._nextId}
             with open(filepath, 'w') as f:
                 json.dump(payload, f, indent=4)
             return True
         except Exception as e:
-            st.error(f"Failed to save: {e}")
+            print(f"Error saving data: {e}")
             return False

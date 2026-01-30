@@ -1,4 +1,7 @@
-class CD:    
+class CD:
+    """
+    Represents the core data object (Model) for a single CD.
+    """
     def __init__(self, id: int, name: str, size: float, encryption_speed: int,
                  occupied_space: float, session_count: int, session_type: str, **kwargs):
         self._id = id
@@ -7,8 +10,12 @@ class CD:
         self._encryption_speed = encryption_speed
         self._occupied_space = occupied_space
         self._session_count = session_count
-        self._session_type = session_type
-        self._is_open = (session_type.lower() != 'finalized')
+        
+        # Sanitize session_type
+        self._session_type = str(session_type).strip()
+        
+        # A CD is considered open if it is NOT finalized
+        self._is_open = (self._session_type.lower() != 'finalized')
 
     # --- Properties ---
     @property
@@ -35,6 +42,18 @@ class CD:
     def getOpenSession(self) -> bool:
         return self._is_open
 
+    # --- Methods ---
+    def set_finalized(self, is_finalized: bool):
+        """Updates the session type based on the boolean flag."""
+        if is_finalized:
+            self._session_type = "Finalized"
+            self._is_open = False
+        else:
+            # If un-finalizing, default to "Data" if it was "Finalized"
+            if self._session_type.lower() == "finalized":
+                self._session_type = "Data"
+            self._is_open = True
+
     def to_dict(self):
         return {
             "id": self._id,
@@ -44,7 +63,6 @@ class CD:
             "occupied_space": self._occupied_space,
             "session_count": self._session_count,
             "session_type": self._session_type,
-            # We include these for the UI, but __init__ will now safely ignore them if present
             "free_space": self.getFreeSpace,
             "is_open": self._is_open
         }

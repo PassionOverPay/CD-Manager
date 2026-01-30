@@ -1,22 +1,15 @@
 {
     "cds": [
         {
-            "id": 1,
-            "name": "Liszt - La Campanella",
-            "size": 450.0,
-            "encryption_speed": 10,
-            "occupied_space": 450.0,
-            "session_count": 1,
-            "session_type": "Open"
-        },
-        {
             "id": 2,
             "name": "Rachmaninoff - concerto no 2",
             "size": 700.0,
             "encryption_speed": 52,
             "occupied_space": 250.0,
             "session_count": 1,
-            "session_type": "Data"
+            "session_type": "Data",
+            "free_space": 450.0,
+            "is_open": true
         },
         {
             "id": 3,
@@ -25,7 +18,9 @@
             "encryption_speed": 52,
             "occupied_space": 150.0,
             "session_count": 2,
-            "session_type": "Audio"
+            "session_type": "Audio",
+            "free_space": 550.0,
+            "is_open": true
         }
     ],
     "nextId": 4

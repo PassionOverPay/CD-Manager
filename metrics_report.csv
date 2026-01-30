@@ -1,0 +1,7 @@
+Class Name,File Location,IFImpl (Parents),Dep_Out (Imports),InstSpec (Usage)
+CD,CD.py,0,0,3
+CDController,CDController.py,0,2,0
+CDIterator,CDIterator.py,0,2,0
+CDRepository,ICDRepository.py,1,6,1
+CDService,CDService.py,0,4,1
+ICDRepository,ICDRepository.py,1,6,0
